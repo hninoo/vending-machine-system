@@ -27,7 +27,7 @@ Additional storefront fields:
 ## Tech Stack
 
 - PHP 8.5
-- MySQL
+- MySQL 9.7 LTS
 - PDO
 - PHPUnit
 - Docker Compose
@@ -38,6 +38,12 @@ Additional storefront fields:
 ```bash
 docker compose up --build -d
 ```
+
+Docker services:
+
+- PHP-FPM app: PHP 8.5
+- Database: MySQL 9.7 LTS (`mysql:9.7.0`)
+- Web server: Nginx
 
 Open:
 
@@ -51,6 +57,8 @@ Reset and reseed the database:
 docker compose down -v
 docker compose up --build -d
 ```
+
+MySQL runs in Docker on port `3306` and is exposed locally on port `3307`.
 
 ## Admin Login
 
