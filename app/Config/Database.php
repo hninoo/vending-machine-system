@@ -13,6 +13,7 @@ final class Database
     private readonly string $dbName;
     private readonly string $username;
     private readonly string $password;
+    private readonly string $timeZone;
     private ?PDO $conn = null;
 
     public function __construct()
@@ -21,6 +22,7 @@ final class Database
         $this->dbName = getenv('DB_DATABASE') ?: 'vending_machine';
         $this->username = getenv('DB_USERNAME') ?: 'root';
         $this->password = getenv('DB_PASSWORD') ?: 'root';
+        $this->timeZone = getenv('DB_TIME_ZONE') ?: '+06:30';
     }
 
     public function connect(): PDO
@@ -36,6 +38,7 @@ final class Database
                     PDO::ATTR_EMULATE_PREPARES => false,
                 ],
             );
+            $this->conn->exec('SET time_zone = ' . $this->conn->quote($this->timeZone));
         } catch (PDOException $e) {
             throw new ConnectionException('Database connection failed.', 0, $e);
         }

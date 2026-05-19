@@ -32,6 +32,7 @@ Additional storefront fields:
 - PHPUnit
 - Docker Compose
 - Nginx 1.30.1 Alpine
+- Timezone: GMT+6:30 (`Asia/Yangon`, database session `+06:30`)
 
 ## Quick Start
 
@@ -44,6 +45,7 @@ Docker services:
 - PHP-FPM app: PHP 8.5
 - Database: MySQL 9.7 LTS (`mysql:9.7.0`)
 - Web server: Nginx 1.30.1 Alpine (`nginx:1.30.1-alpine`)
+- Timezone: GMT+6:30 (`Asia/Yangon`, database session `+06:30`)
 
 Open:
 
@@ -59,6 +61,7 @@ docker compose up --build -d
 ```
 
 MySQL runs in Docker on port `3306` and is exposed locally on port `3307`.
+New transaction timestamps are stored as GMT+6:30 database-local `DATETIME` values.
 
 ## Admin Login
 

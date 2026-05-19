@@ -5,6 +5,7 @@ FROM php:${PHP_VERSION}-fpm-alpine
 RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
     && apk add --no-cache \
         git \
+        tzdata \
         unzip \
         libzip-dev \
     && docker-php-ext-install \
@@ -13,6 +14,8 @@ RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
     && apk del .build-deps
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+RUN echo "date.timezone=Asia/Yangon" > /usr/local/etc/php/conf.d/timezone.ini
 
 WORKDIR /var/www/html
 

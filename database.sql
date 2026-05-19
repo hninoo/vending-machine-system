@@ -1,8 +1,11 @@
 -- Create the database
-CREATE DATABASE vending_machine;
+CREATE DATABASE IF NOT EXISTS vending_machine;
 
 -- Use the database
 USE vending_machine;
+
+-- Store generated database times in GMT+6:30.
+SET time_zone = '+06:30';
 
 -- Create the products table
 CREATE TABLE products (
@@ -39,7 +42,7 @@ CREATE TABLE transactions (
     product_id INT NOT NULL,
     quantity INT NOT NULL,
     total_price DECIMAL(10, 3) NOT NULL,
-    transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    transaction_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT transactions_quantity_positive CHECK (quantity > 0),
     CONSTRAINT transactions_total_price_positive CHECK (total_price > 0),
     INDEX idx_transactions_date (transaction_date),

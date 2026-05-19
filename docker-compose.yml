@@ -13,6 +13,8 @@ services:
       DB_DATABASE: vending_machine
       DB_USERNAME: root
       DB_PASSWORD: root
+      DB_TIME_ZONE: "+06:30"
+      TZ: Asia/Yangon
     volumes:
       - .:/var/www/html
       - /var/www/html/vendor
@@ -22,6 +24,8 @@ services:
     image: nginx:1.30.1-alpine
     container_name: vending-machine-nginx
     entrypoint: ["nginx", "-g", "daemon off;"]
+    environment:
+      TZ: Asia/Yangon
     depends_on:
       - app
     ports:
@@ -34,9 +38,12 @@ services:
   mysql:
     image: mysql:9.7.0
     container_name: vending-machine-mysql
+    command: ["--default-time-zone=+06:30"]
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_ROOT_HOST: "%"
+      MYSQL_DATABASE: vending_machine
+      TZ: Asia/Yangon
     ports:
       - "3307:3306"
     volumes:
