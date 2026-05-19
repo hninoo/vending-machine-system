@@ -1,0 +1,53 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        PHP_VERSION: "8.5"
+    container_name: vending-machine-app
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DB_HOST: mysql
+      DB_DATABASE: vending_machine
+      DB_USERNAME: root
+      DB_PASSWORD: root
+    volumes:
+      - .:/var/www/html
+      - /var/www/html/vendor
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:latest
+    container_name: vending-machine-nginx
+    entrypoint: ["nginx", "-g", "daemon off;"]
+    depends_on:
+      - app
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html:ro
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:9.7.0
+    container_name: vending-machine-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: "%"
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./database.sql:/docker-entrypoint-initdb.d/01-database.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -proot --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  mysql-data:

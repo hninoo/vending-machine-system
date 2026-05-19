@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "a19e61f1-c191-4c6a-b46f-0f86e1310b1d",
+		"name": "vending-machine-system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13977509"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"user\",\r\n  \"password\": \"user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://5c59-2405-9800-b911-2cf2-c554-ea29-18d8-82d8.ngrok-free.app/api/v1/login",
+					"protocol": "https",
+					"host": [
+						"5c59-2405-9800-b911-2cf2-c554-ea29-18d8-82d8",
+						"ngrok-free",
+						"app"
+					],
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Products List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://5c59-2405-9800-b911-2cf2-c554-ea29-18d8-82d8.ngrok-free.app/api/v1/products",
+					"protocol": "https",
+					"host": [
+						"5c59-2405-9800-b911-2cf2-c554-ea29-18d8-82d8",
+						"ngrok-free",
+						"app"
+					],
+					"path": [
+						"api",
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product Detail by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://5c59-2405-9800-b911-2cf2-c554-ea29-18d8-82d8.ngrok-free.app/api/v1/products/1",
+					"protocol": "https",
+					"host": [
+						"5c59-2405-9800-b911-2cf2-c554-ea29-18d8-82d8",
+						"ngrok-free",
+						"app"
+					],
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Purchase Transaction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MjUyOTI2ODQsImV4cCI6MTcyNTI5NjI4NCwic3ViIjoyLCJyb2xlIjoidXNlciJ9.DQUxcCPJtJjFF0uerVrlzBh6liDvLKOQfJkMe6ifiRY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"product_id\": 1,\r\n  \"quantity\": 3\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://5c59-2405-9800-b911-2cf2-c554-ea29-18d8-82d8.ngrok-free.app/api/v1/transactions",
+					"protocol": "https",
+					"host": [
+						"5c59-2405-9800-b911-2cf2-c554-ea29-18d8-82d8",
+						"ngrok-free",
+						"app"
+					],
+					"path": [
+						"api",
+						"v1",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://5c59-2405-9800-b911-2cf2-c554-ea29-18d8-82d8.ngrok-free.app/api/v1/logout",
+					"protocol": "https",
+					"host": [
+						"5c59-2405-9800-b911-2cf2-c554-ea29-18d8-82d8",
+						"ngrok-free",
+						"app"
+					],
+					"path": [
+						"api",
+						"v1",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
