@@ -31,7 +31,7 @@ Additional storefront fields:
 - PDO
 - PHPUnit
 - Docker Compose
-- Nginx
+- Nginx 1.30.1 Alpine
 
 ## Quick Start
 
@@ -43,12 +43,12 @@ Docker services:
 
 - PHP-FPM app: PHP 8.5
 - Database: MySQL 9.7 LTS (`mysql:9.7.0`)
-- Web server: Nginx
+- Web server: Nginx 1.30.1 Alpine (`nginx:1.30.1-alpine`)
 
 Open:
 
 ```text
-http://localhost:8000
+http://localhost:80
 ```
 
 Reset and reseed the database:
@@ -70,7 +70,7 @@ Password: admin123
 Admin URL:
 
 ```text
-http://localhost:8000/admin/login
+http://localhost:80/admin/login
 ```
 
 ## Database

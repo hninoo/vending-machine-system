@@ -3,7 +3,7 @@ from urllib.request import build_opener, HTTPRedirectHandler, Request
 import unittest
 
 
-BASE_URL = "http://localhost:8000"
+BASE_URL = "http://localhost:80"
 
 
 class NoRedirectHandler(HTTPRedirectHandler):
